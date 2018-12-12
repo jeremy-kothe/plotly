@@ -155,6 +155,10 @@ HTMLWidgets.widget({
       x.config.modeBarButtonsToRemove.push("sendDataToCloud");
     }
     
+    // if the object was passed in from another window, plotly will falsely think it isn't a "plain object"
+    if (inIframe())
+      Object.setPrototypeOf(x, Object.prototype);
+
     // if no plot exists yet, create one with a particular configuration
     if (!instance.plotly) {
       
@@ -835,6 +839,10 @@ function isPlainObject(obj) {
     Object.prototype.toString.call(obj) === '[object Object]' &&
     Object.getPrototypeOf(obj) === Object.prototype
   );
+}
+
+function inIframe() {
+  return window && window.self !== window.top;
 }
 
 function subsetArrayAttrs(obj, indices) {

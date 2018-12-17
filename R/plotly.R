@@ -449,7 +449,7 @@ plotlyMainBundle <- function() {
     version = "1.41.3",
     package = "plotly",
     src = dependency_dir("plotlyjs"),
-    script = "plotly-latest.min.js",
+    script = "plotly-latest.js",
     all_files = FALSE
   )
 }
